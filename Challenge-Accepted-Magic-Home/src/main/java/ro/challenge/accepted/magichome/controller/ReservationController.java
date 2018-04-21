@@ -1,12 +1,15 @@
 package ro.challenge.accepted.magichome.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ro.challenge.accepted.magichome.domain.Doctor;
+import ro.challenge.accepted.magichome.domain.Patient;
 import ro.challenge.accepted.magichome.domain.Reservation;
-import ro.challenge.accepted.magichome.dto.CreatePacientReservation;
+import ro.challenge.accepted.magichome.dto.AcceptRequest;
+
+import ro.challenge.accepted.magichome.dto.CreatePatientReservation;
 import ro.challenge.accepted.magichome.service.ReservationService;
 import ro.challenge.accepted.magichome.service.SMSService;
 
@@ -32,7 +35,7 @@ public class ReservationController {
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String create(@PathVariable CreatePacientReservation dto, Model model) {
+    public String create(@PathVariable CreatePatientReservation dto) {
         Reservation reservation = getReservation(dto);
         reservationService.createReservation(reservation);
         // /reservationService.createReservation(null);///new Reservation());
@@ -57,7 +60,7 @@ public class ReservationController {
 
         return "OK";
     }
-    private Reservation getReservation (CreatePacientReservation dto){
+    private Reservation getReservation (CreatePatientReservation dto){
         Reservation reservation = new Reservation();
         reservation.setDays(dto.getPeriod());
 
