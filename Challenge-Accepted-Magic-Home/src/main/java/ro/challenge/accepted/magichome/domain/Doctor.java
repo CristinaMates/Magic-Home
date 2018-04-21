@@ -23,6 +23,22 @@ public class Doctor {
         this.id = id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @Override
     public String toString() {
         return "Doctor{" +
@@ -39,7 +55,6 @@ public class Doctor {
 
         Doctor doctor = (Doctor) o;
 
-        if (id != doctor.id) return false;
         if (firstName != null ? !firstName.equals(doctor.firstName) : doctor.firstName != null)
             return false;
         return lastName != null ? lastName.equals(doctor.lastName) : doctor.lastName == null;
@@ -49,7 +64,6 @@ public class Doctor {
     public int hashCode() {
         int result = firstName != null ? firstName.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (int) (id ^ (id >>> 32));
         return result;
     }
 }
