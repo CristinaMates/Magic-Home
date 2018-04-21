@@ -1,6 +1,6 @@
 package ro.challenge.accepted.magichome.service;
 
-import groovy.transform.Trait;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +12,6 @@ import ro.challenge.accepted.magichome.domain.Custodian;
 import ro.challenge.accepted.magichome.domain.Doctor;
 import ro.challenge.accepted.magichome.domain.Patient;
 import ro.challenge.accepted.magichome.domain.Reservation;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,8 +54,7 @@ public class DefaultReservationService implements ReservationService {
     public List<Reservation> getAll() {
 
         List<Reservation> result = reservationDAO.getAll();
-        for (Reservation re:
-             result) {
+        for (Reservation re: result) {
             solve(re);
         }
        return result;
