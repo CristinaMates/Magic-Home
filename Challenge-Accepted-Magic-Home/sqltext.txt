@@ -1,0 +1,46 @@
+CREATE TABLE public.patient
+(
+  fist_name character varying(50),
+  last_name character varying(50),
+  disability boolean,
+  age numeric(50,0),
+  diagnosis character varying(50),
+  id numeric NOT NULL,
+  doctor_id numeric,
+  CONSTRAINT idprimarykey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.patient
+  OWNER TO postgres;
+
+--select * from patient;
+--alter table patient add column doctor_id numeric;
+--select * from patient;
+/*create table doctors(
+	first_name varchar (50),
+	last_name varchar (50),
+	id numeric primary key NOT NULL
+	);
+	*/
+/*create table reservation (
+	id numeric primary key NOT NULL,
+	custodianID numeric,
+	patientID numeric,
+	doctorID numeric,
+	numberOfCustodians numeric, 
+	entranceDate date,
+	days int,
+	needsPsychologicalCounseling boolean
+	);
+	*/
+	--select * from doctors;
+	--select * from reservation;
+/*create table custodian (
+	first_name varchar (50),
+	last_name varchar (50),
+	telephone varchar (50)
+	);
+	*/
+	--select * from custodian;

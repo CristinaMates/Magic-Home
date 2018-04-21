@@ -10,6 +10,11 @@ public class DoctorDAOImpl implements DoctorDAO {
 
     @Override
     public Doctor create(Doctor doctor) {
+        for (Doctor doctor1 : doctors) {
+            if (doctor1.getId() == doctor.getId()) {
+                return null; // duplicate
+            }
+        }
         doctors.add(doctor);
         return doctor;
     }
@@ -36,6 +41,11 @@ public class DoctorDAOImpl implements DoctorDAO {
 
     @Override
     public Doctor findById(long id) {
-        return null;
+        for (Doctor doctor : doctors) {
+            if (doctor.getId() == id) {
+                return doctor;
+            }
+        }
+        return null; // not found
     }
 }
