@@ -11,30 +11,53 @@ import java.util.List;
 
 public class CustodianDAOImpl implements CustodianDAO {
 
+    public static final RowMapper<Custodian> CUSTODIAN_ROW_MAPPER = new RowMapper<Custodian>() {
+        @Override
+        public Custodian mapRow(ResultSet resultSet, int i) throws SQLException {
+            Custodian result = new Custodian();
+            result.setFirstName(resultSet.getString("first_name"));
+            result.setLastName(resultSet.getString("last_name"));
+            result.setTelephone(resultSet.getLong("telephone"));
+
+            return result;
+        }
+    };
     private JdbcTemplate jdbcTemplate;
 
-    private CustodianDAOImpl(DataSource dataSource){
+
+    public CustodianDAOImpl(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
     @Override
     public List<Custodian> getAll() {
-        return jdbcTemplate.query("select * from custodians", new RowMapper<Custodian>() {
-            @Override
-            public Custodian mapRow(ResultSet resultSet, int i) throws SQLException {
-
-                Custodian result = new Custodian();
-
-                result.setFirstName(resultSet.getString(1));
-                result.setLastName(resultSet.getString(2));
-               // result.se
-
-                return result;
-            }
-        });
+        return jdbcTemplate.query("select * from custodian", CUSTODIAN_ROW_MAPPER);
     }
 
     @Override
-    public Custodian create(Custodian c) {
-        return null;
+    public Custodian create(Custodian custodian) {
+        long newCustodianId = jdbcTemplate.queryForObject("insert into custodian(first_name, last_name, telephone) values(?, ?, ?) returning id",
+                new RowMapper<Long>() {
+                    @Override
+                    public Long mapRow(ResultSet resultSet, int i) throws SQLException {
+
+                        return resultSet.getLong(1);
+                    }
+                }, custodian.getFirstName(), custodian.getLastName(),
+                custodian.getTelephone());
+
+        custodian.setId(newCustodianId);
+
+//        if (true) {
+//            throw new RuntimeException("Force rollback");
+//        }
+        return custodian;
+    }
+
+    @Override
+    public Custodian findById(long id) {
+        return jdbcTemplate.queryForObject("select * from custodian where id = ?",
+
+                CUSTODIAN_ROW_MAPPER,    id);
     }
 }

@@ -1,42 +1,41 @@
 package ro.challenge.accepted.magichome.dao;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import ro.challenge.accepted.magichome.domain.Doctor;
 
-import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorDAOImpl implements DoctorDAO{
+public class DoctorDAOImpl implements DoctorDAO {
+    private List<Doctor> doctors = new ArrayList<>();
 
-    private JdbcTemplate jdbcTemplate;
+    @Override
+    public Doctor create(Doctor doctor) {
+        doctors.add(doctor);
+        return doctor;
+    }
 
-    private DoctorDAOImpl (DataSource dataSource){
-        jdbcTemplate = new JdbcTemplate(dataSource);
+  //  @Override
+    public void update(Doctor doctor) {
+        for (Doctor doctor1 : doctors) {
+            if (doctor1.getId() == doctor.getId()) {
+                doctor1.setFirstName(doctor.getFirstName());
+                doctor1.setLastName(doctor.getLastName());
+            }
+        }
+    }
+
+   // @Override
+    public void delete(Doctor doctor) {
+        doctors.remove(doctor);
     }
 
     @Override
     public List<Doctor> getAll() {
-        return jdbcTemplate.query("select * from doctors", new RowMapper<Doctor>() {
-            @Override
-            public Doctor mapRow(ResultSet resultSet, int i) throws SQLException {
-
-                Doctor result = new Doctor();
-
-                result.setFirstName(resultSet.getString(1));
-                result.setLastName(resultSet.getString(2));
-
-                return result;
-            }
-        });
+        return new ArrayList<>(doctors);
     }
 
     @Override
-    public Doctor create(Doctor doctor) {
-        jdbcTemplate.update("inset into doctors(first_name, last_name)" + " value(?, ?) returning id");
-        doctor.getId();
-        return doctor;
+    public Doctor findById(long id) {
+        return null;
     }
 }

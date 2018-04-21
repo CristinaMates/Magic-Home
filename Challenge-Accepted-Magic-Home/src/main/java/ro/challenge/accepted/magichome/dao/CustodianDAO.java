@@ -4,6 +4,6 @@ import ro.challenge.accepted.magichome.domain.Custodian;
 
 public interface CustodianDAO extends AbstractDAO<Custodian>{
 
-
+    Custodian findById(long id);
 
 }
