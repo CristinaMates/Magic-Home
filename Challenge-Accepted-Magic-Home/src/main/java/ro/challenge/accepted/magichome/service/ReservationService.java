@@ -9,4 +9,5 @@ public interface ReservationService {
     void createReservation(ReservationService reservationService);
 
     List<Reservation> getAll();
+
 }

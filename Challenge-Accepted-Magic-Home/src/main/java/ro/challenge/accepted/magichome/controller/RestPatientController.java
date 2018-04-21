@@ -1,6 +1,7 @@
 package ro.challenge.accepted.magichome.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +11,7 @@ import ro.challenge.accepted.magichome.dto.CreatePacientReservation;
 import ro.challenge.accepted.magichome.service.ReservationService;
 import ro.challenge.accepted.magichome.service.SMSService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -22,7 +24,11 @@ public class RestPatientController {
 
 
     @RequestMapping("")
-    public List<Reservation> list() {
+    public List<Reservation> list(Model model, HttpServletRequest request) {
+        List<Reservation> reservations = reservationService.getAll();
+        model.addAttribute("reservations", reservations);
+        model.addAttribute("createPatientReservation", new CreatePacientReservation());
+
         return reservationService.getAll();
     }
 
