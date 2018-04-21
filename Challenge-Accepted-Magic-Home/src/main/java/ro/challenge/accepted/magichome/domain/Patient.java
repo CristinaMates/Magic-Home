@@ -1,12 +1,12 @@
 package ro.challenge.accepted.magichome.domain;
 
-import java.util.List;
+
 import java.util.Objects;
 
 public class Patient {
 
-    private long patientId;
-    private String patientFirstName;
+    private long id;
+    private String firstName;
     private String patientLastName;
     private String diagnosis;
     private int age;
@@ -16,9 +16,9 @@ public class Patient {
     public Patient (){
 
     }
-    public Patient(long patientId, String patientFirstName, String patientLastName, String diagnosis, int age, Doctor doctor, boolean disability) {
-        this.patientId = patientId;
-        this.patientFirstName = patientFirstName;
+    public Patient(long patientId, String firstName, String patientLastName, String diagnosis, int age, Doctor doctor, boolean disability) {
+        this.id = patientId;
+        this.firstName = firstName;
         this.patientLastName = patientLastName;
         this.diagnosis = diagnosis;
         this.age = age;
@@ -26,20 +26,20 @@ public class Patient {
         this.disability = disability;
     }
 
-    public long getPatientId() {
-        return patientId;
+    public long getId() {
+        return id;
     }
 
-    public void setPatientId(long patientId) {
-        this.patientId = patientId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getPatientFirstName() {
-        return patientFirstName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPatientFirstName(String patientFirstName) {
-        this.patientFirstName = patientFirstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getPatientLastName() {
@@ -86,8 +86,8 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient{" +
-                "patientId=" + patientId +
-                ", patientFirstName='" + patientFirstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", patientLastName='" + patientLastName + '\'' +
                 ", diagnosis='" + diagnosis + '\'' +
                 ", age=" + age +
@@ -101,10 +101,10 @@ public class Patient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return patientId == patient.patientId &&
+        return id == patient.id &&
                 age == patient.age &&
                 disability == patient.disability &&
-                Objects.equals(patientFirstName, patient.patientFirstName) &&
+                Objects.equals(firstName, patient.firstName) &&
                 Objects.equals(patientLastName, patient.patientLastName) &&
                 Objects.equals(diagnosis, patient.diagnosis) &&
                 Objects.equals(doctor, patient.doctor);
@@ -113,7 +113,7 @@ public class Patient {
     @Override
     public int hashCode() {
 
-        return Objects.hash(patientId, patientFirstName, patientLastName, diagnosis, age, doctor, disability);
+        return Objects.hash(id, firstName, patientLastName, diagnosis, age, doctor, disability);
     }
 }
 

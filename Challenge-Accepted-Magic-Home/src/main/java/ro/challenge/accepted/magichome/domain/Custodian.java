@@ -1,37 +1,30 @@
 package ro.challenge.accepted.magichome.domain;
 
 public class Custodian {
-    private String firstNameCustodian;
-    private String lastNameCustodian;
+    private String firstName;
+    private String lastName;
     private long telephone;
-    private long idCustodian;
-    private Pacient pacient;
+    private long id;
+
 
     public Custodian() {
     }
 
-    public Custodian(String firstNameCustodian, String lastNameCustodian, long telephone, long idCustodian, Pacient pacient) {
-        this.firstNameCustodian = firstNameCustodian;
-        this.lastNameCustodian = lastNameCustodian;
-        this.telephone = telephone;
-        this.idCustodian = idCustodian;
-        this.pacient = pacient;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getFirstNameCustodian() {
-        return firstNameCustodian;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setFirstNameCustodian(String firstNameCustodian) {
-        this.firstNameCustodian = firstNameCustodian;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getLastNameCustodian() {
-        return lastNameCustodian;
-    }
-
-    public void setLastNameCustodian(String lastNameCustodian) {
-        this.lastNameCustodian = lastNameCustodian;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public long getTelephone() {
@@ -42,20 +35,12 @@ public class Custodian {
         this.telephone = telephone;
     }
 
-    public long getIdCustodian() {
-        return idCustodian;
+    public long getId() {
+        return id;
     }
 
-    public void setIdCustodian(long idCustodian) {
-        this.idCustodian = idCustodian;
-    }
-
-    public Pacient getPacient() {
-        return pacient;
-    }
-
-    public void setPacient(Pacient pacient) {
-        this.pacient = pacient;
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
@@ -66,32 +51,18 @@ public class Custodian {
         Custodian custodian = (Custodian) o;
 
         if (telephone != custodian.telephone) return false;
-        if (idCustodian != custodian.idCustodian) return false;
-        if (firstNameCustodian != null ? !firstNameCustodian.equals(custodian.firstNameCustodian) : custodian.firstNameCustodian != null)
+        if (id != custodian.id) return false;
+        if (firstName != null ? !firstName.equals(custodian.firstName) : custodian.firstName != null)
             return false;
-        if (lastNameCustodian != null ? !lastNameCustodian.equals(custodian.lastNameCustodian) : custodian.lastNameCustodian != null)
-            return false;
-        return pacient != null ? pacient.equals(custodian.pacient) : custodian.pacient == null;
+        return lastName != null ? lastName.equals(custodian.lastName) : custodian.lastName == null;
     }
 
     @Override
     public int hashCode() {
-        int result = firstNameCustodian != null ? firstNameCustodian.hashCode() : 0;
-        result = 31 * result + (lastNameCustodian != null ? lastNameCustodian.hashCode() : 0);
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (int) (telephone ^ (telephone >>> 32));
-        result = 31 * result + (int) (idCustodian ^ (idCustodian >>> 32));
-        result = 31 * result + (pacient != null ? pacient.hashCode() : 0);
+        result = 31 * result + (int) (id ^ (id >>> 32));
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Custodian{" +
-                "firstNameCustodian='" + firstNameCustodian + '\'' +
-                ", lastNameCustodian='" + lastNameCustodian + '\'' +
-                ", telephone=" + telephone +
-                ", idCustodian=" + idCustodian +
-                ", pacient=" + pacient +
-                '}';
     }
 }
