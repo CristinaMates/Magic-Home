@@ -9,7 +9,7 @@ import ro.challenge.accepted.magichome.domain.Patient;
 
 import java.util.List;
 @RestController
-@RequestMapping("/api/hotel")
+@RequestMapping("/api/reservation")
 public class RestPatientController {
         @Autowired
         private ResarvationService resarvationService;
@@ -22,7 +22,7 @@ public class RestPatientController {
         }
 
 
-        @RequestMapping(value = "/{patient}", method = RequestMethod.POST)
+        @RequestMapping(value = "", method = RequestMethod.POST)
         public void create(@PathVariable String model) {
             reservationService.createReservation(model);
         }
