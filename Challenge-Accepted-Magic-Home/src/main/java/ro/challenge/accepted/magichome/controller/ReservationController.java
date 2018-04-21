@@ -13,11 +13,12 @@ import ro.challenge.accepted.magichome.dto.CreatePacientReservation;
 import ro.challenge.accepted.magichome.service.ReservationService;
 import ro.challenge.accepted.magichome.service.SMSService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservation")
-public class RestReservationController {
+public class ReservationController {
     @Autowired
     private ReservationService reservationService;
 
@@ -25,7 +26,11 @@ public class RestReservationController {
 
 
     @RequestMapping("")
-    public List<Reservation> list() {
+    public List<Reservation> list(Model model, HttpServletRequest request) {
+        List<Reservation> reservations = reservationService.getAll();
+        model.addAttribute("reservations", reservations);
+        model.addAttribute("createPatientReservation", new CreatePacientReservation());
+
         return reservationService.getAll();
     }
 
@@ -35,7 +40,9 @@ public class RestReservationController {
         Reservation reservation = getReservation(dto);
         reservationService.createReservation(reservation);
         // /reservationService.createReservation(null);///new Reservation());
+
         return "OK";
+
     }
 
 
@@ -64,7 +71,7 @@ public class RestReservationController {
         patient.setDiagnosis(dto.getDiagnosis());
         patient.setAge(dto.getPacient().getAge());
         patient.setDisability(dto.isDisability());
-        
+
         Doctor doctor = new Doctor();
 
         reservation.setPatient(patient);
