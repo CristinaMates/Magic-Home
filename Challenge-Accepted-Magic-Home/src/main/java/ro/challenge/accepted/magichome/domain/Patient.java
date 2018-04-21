@@ -11,6 +11,7 @@ public class Patient {
     private String diagnosis;
     private int age;
     private Doctor doctor;
+    private long doctorId;
     private boolean disability;
 
     public Patient (){
@@ -83,17 +84,12 @@ public class Patient {
 
     }
 
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", patientLastName='" + patientLastName + '\'' +
-                ", diagnosis='" + diagnosis + '\'' +
-                ", age=" + age +
-                ", doctor=" + doctor +
-                ", disability=" + disability +
-                '}';
+    public long getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(long doctorId) {
+        this.doctorId = doctorId;
     }
 
     @Override
