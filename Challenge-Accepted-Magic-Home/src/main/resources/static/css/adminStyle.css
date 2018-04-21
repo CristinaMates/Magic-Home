@@ -1,0 +1,6 @@
+#content{
+    display:flex;
+    width:25%;
+    justify-content:space-around;
+    border:solid 1px black;
+}

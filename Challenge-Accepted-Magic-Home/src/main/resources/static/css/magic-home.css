@@ -1,0 +1,125 @@
+/*HOME PAGE*/
+
+form{
+    width:90%;
+    margin:auto;
+    height:768px;
+}
+a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.next {
+    background-color: #4CAF50;
+    color: white;
+}
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+.col{
+    margin:5px 0px;
+}
+#telefon{
+    width:49.4%;
+}
+#inputNumber{
+    height:3.2rem;
+}
+
+/*div #home-page{*/
+/*    height: 80%;*/
+/*}*/
+.btnNext, .btnPrev, .submitButton{
+    background-color:rgb(223,112,78);
+    color:white;
+}
+
+.buttonClass{
+    padding-bottom:10rem;
+}
+
+#home-page{
+    height: 768px;
+    background-color: rgba(150,133,87,0.4);
+}
+#dropInputDoctor, #dropInputDisab{
+     height:3.2rem;
+}
+div #cover{
+    background-image:url('https://pentrumagichome.ro/wp-content/uploads/2017/10/PIC_Homepage.jpg');
+    background-size: cover;
+    height: 40rem;
+}
+#cover img{
+    width: 29.3rem;
+    position:relative;
+}
+.slogan p span {
+    color: rgb(128, 170, 255);
+    font-size: 60px;
+}
+.slogan p{
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    font-size: 50px;
+    font-family: 'Bree Serif', serif;
+    position:absolute;
+    top: 15%;
+    padding: 0% 3%;
+}
+.slogan{
+    width: 30%;
+}
+.pull-right{
+    float: right;
+}
+
+#register-info p{
+    font-family: 'Bree Serif', serif;
+    font-size: 30px;
+    margin: 1% 5.5%;
+}
+#help1{
+    position: absolute;
+    left: 33%;
+}
+#help{
+    margin-left:8%;
+}
+#register-info p span{
+    color:rgb(0, 17, 51);
+    font-size:50px;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: grey;
+    border-color: grey;
+}
+button.btn.btn-primary.btn-lg {
+    position: absolute;
+    bottom: 5%;
+    left: 34%;
+    width: 30%;
+    height: 10%;
+    background-color:rgb(223,112,78);
+    border:rgb(223,112,78);
+}
+
+.show{
+    display:block;
+}
+.hide{
+    display:none;
+}
+#form-parent{
+    background-image:url(''image-video/cover.png'');
+    background-size: cover;
+}

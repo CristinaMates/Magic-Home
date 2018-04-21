@@ -41,6 +41,7 @@ public class DefaultReservationService implements ReservationService {
         reservation.setDoctor(doctor);
 
         Patient patient = patientDAO.create(reservation.getPatient());
+        patient.setDoctor(doctor);
         reservation.setPatient(patient);
 
         Custodian custodian = custodianDAO.create(reservation.getCustodian());
@@ -60,12 +61,12 @@ public class DefaultReservationService implements ReservationService {
         }
         return result;
     }
-
     private void solve(Reservation reservation) {
-//        Doctor doctor = new Doctor();
-//        reservation.setDoctor(doctorDAO.findById(doctor.getId()));
-//        Patient patient = new Patient();
-//        reservation.setPatient(custodianDAO.;
-
+        Doctor doctor = new Doctor();
+        reservation.setDoctor(doctorDAO.findById(doctor.getId()));
+        Patient patient = new Patient();
+        reservation.setPatient(patientDAO.findById(patient.getId()));
+        Custodian custodian = new Custodian();
+        reservation.setCustodian(custodianDAO.findById(custodian.getId()));
     }
 }
