@@ -1,36 +1,32 @@
 package ro.challenge.accepted.magichome.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ro.challenge.accepted.magichome.domain.Doctor;
-import ro.challenge.accepted.magichome.domain.Patient;
 import ro.challenge.accepted.magichome.domain.Reservation;
 import ro.challenge.accepted.magichome.dto.CreatePacientReservation;
 import ro.challenge.accepted.magichome.service.ReservationService;
 import ro.challenge.accepted.magichome.service.SMSService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservation")
 public class ReservationController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReservationController.class);
+
     @Autowired
     private ReservationService reservationService;
 
+    @Autowired
     private SMSService smsService;
 
 
     @RequestMapping("")
-    public List<Reservation> list(Model model, HttpServletRequest request) {
-        List<Reservation> reservations = reservationService.getAll();
-        model.addAttribute("reservations", reservations);
-        model.addAttribute("createPatientReservation", new CreatePacientReservation());
-
+    public List<Reservation> list() {
         return reservationService.getAll();
     }
 
@@ -47,17 +43,17 @@ public class ReservationController {
 
 
     @RequestMapping(value = "/accept", method = RequestMethod.POST)
-    public String acceptReservation(int reservationId, String text) {
-       // smsService.sendSms();
+    public String acceptReservation(@RequestBody AcceptRequest acceptRequest) {
 
-        return "OK";
-    }
-
-
-    @RequestMapping(value = "/reject", method = RequestMethod.POST)
-    public String rejectReservation(int reservationId, String text) {
-
-        // // smsService.sendSms();
+        LOGGER.info("Reservation Accept {}", acceptRequest);
+        try {
+            if (false) {
+                smsService.sendSms("40724251112", acceptRequest.getText() + acceptRequest.isAccept());
+            }
+        }catch (Exception ex ){
+            LOGGER.error("Error sending SMS", ex);
+            return "ERROR";
+        }
 
         return "OK";
     }
@@ -79,4 +75,6 @@ public class ReservationController {
         return reservation;
 
     }
+
+
 }
