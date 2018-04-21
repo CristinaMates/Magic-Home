@@ -2,11 +2,11 @@ package ro.challenge.accepted.magichome.dao;
 
 import ro.challenge.accepted.magichome.domain.Doctor;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DoctorDAOImpl implements DoctorDAO {
-    Set<Doctor> doctors = new HashSet<>();
+    List<Doctor> doctors = new ArrayList<>();
 
     @Override
     public Doctor create(Doctor doctor) {
@@ -34,11 +34,11 @@ public class DoctorDAOImpl implements DoctorDAO {
     }
 
     @Override
-    public Set<Doctor> getAll() {
-        return new HashSet<>(doctors);
+    public List<Doctor> getAll() {
+        return new ArrayList<>(doctors);
     }
 
-    public Set<Doctor> getDoctors() {
+    public List<Doctor> getDoctors() {
         return doctors;
     }
 }

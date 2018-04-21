@@ -16,7 +16,7 @@ import java.util.List;
 public class DefaultReservationService implements ReservationService {
 
     @Override
-    public void createReservation(ReservationService reservationService) {
+    public void createReservation(Reservation reservation) {
 
     }
 

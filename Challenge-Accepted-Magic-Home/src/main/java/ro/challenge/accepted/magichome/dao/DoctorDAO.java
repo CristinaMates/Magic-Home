@@ -2,15 +2,10 @@ package ro.challenge.accepted.magichome.dao;
 
 import ro.challenge.accepted.magichome.domain.Doctor;
 
-import java.util.Set;
+import java.util.List;
 
-public interface DoctorDAO {
-    // takes Doctor from UI and sends it to database
-    Doctor create(Doctor doctor);
-
+public interface DoctorDAO extends AbstractDAO<Doctor>{
     void update(Doctor doctor);
 
     void delete(Doctor doctor);
-
-    Set<Doctor> getAll();
 }
