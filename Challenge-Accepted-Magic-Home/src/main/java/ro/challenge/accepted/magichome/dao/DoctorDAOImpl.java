@@ -14,7 +14,7 @@ public class DoctorDAOImpl implements DoctorDAO {
         return doctor;
     }
 
-    @Override
+  //  @Override
     public void update(Doctor doctor) {
         for (Doctor doctor1 : doctors) {
             if (doctor1.getId() == doctor.getId()) {
@@ -24,7 +24,7 @@ public class DoctorDAOImpl implements DoctorDAO {
         }
     }
 
-    @Override
+   // @Override
     public void delete(Doctor doctor) {
         doctors.remove(doctor);
     }
@@ -32,5 +32,10 @@ public class DoctorDAOImpl implements DoctorDAO {
     @Override
     public List<Doctor> getAll() {
         return new ArrayList<>(doctors);
+    }
+
+    @Override
+    public Doctor findById(long id) {
+        return null;
     }
 }
