@@ -15,10 +15,10 @@ import java.util.List;
 @Service
 public class DefaultReservationService implements ReservationService {
 
-//    @Override
-//    public void createReservation(ReservationService reservationService) {
-//
-//    }
+    @Override
+    public void createReservation(ReservationService reservationService) {
+
+    }
 
     @Override
     public void createReservation(Reservation reservation) {
