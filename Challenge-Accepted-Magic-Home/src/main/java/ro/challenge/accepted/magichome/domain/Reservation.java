@@ -19,6 +19,16 @@ public class Reservation {
     private int days;
     private boolean needsPsychologicalCounseling;
 
+    private Status status;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }

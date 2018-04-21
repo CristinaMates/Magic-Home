@@ -3,7 +3,6 @@ package ro.challenge.accepted.magichome.dao;
 import org.junit.Test;
 import ro.challenge.accepted.magichome.domain.Doctor;
 
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -16,9 +15,18 @@ public class DoctorDAOImplTest {
 
         doctorDAO.create(new Doctor("George", "Popescu", 32L));
 
-        List<Doctor> doctors = doctorDAO.getAll();
+        assertEquals(1, doctorDAO.getAll().size());
+        assertEquals("George", doctorDAO.getAll().get(0).getFirstName());
+    }
 
-        assertEquals(1, doctors.size());
+    @Test
+    public void createDuplicateDoctor() {
+        DoctorDAOImpl doctorDAO = new DoctorDAOImpl();
+
+        doctorDAO.create(new Doctor("George", "Popescu", 32L));
+        doctorDAO.create(new Doctor("George", "Popescu", 32L));
+
+        assertEquals(1, doctorDAO.getAll().size());
     }
 
     @Test
@@ -42,5 +50,18 @@ public class DoctorDAOImplTest {
         doctorDAO.delete(doctor);
 
         assertEquals(0, doctorDAO.getAll().size());
+    }
+
+    @Test
+    public void findDoctorByID() {
+        DoctorDAOImpl doctorDAO = new DoctorDAOImpl();
+
+        doctorDAO.create(new Doctor("George", "Popescu", 32L));
+        doctorDAO.create(new Doctor("Ioan", "Lunca", 46L));
+        doctorDAO.create(new Doctor("Mircea", "Tanase", 60L));
+
+        assertEquals("George", doctorDAO.findById(32L));
+        assertEquals("Ioan", doctorDAO.findById(46L));
+        assertEquals("Mircea", doctorDAO.findById(60L));
     }
 }
