@@ -18,6 +18,7 @@ public class CustodianDAOImpl implements CustodianDAO {
             result.setFirstName(resultSet.getString("first_name"));
             result.setLastName(resultSet.getString("last_name"));
             result.setTelephone(resultSet.getString("telephone"));
+            result.setId(resultSet.getLong("id"));
 
             return result;
         }

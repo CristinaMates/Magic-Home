@@ -5,10 +5,10 @@ import java.util.Date;
 public class Reservation {
     private long id;
 
-    private long CustodianID;
+    private long custodianID;
     private Custodian custodian;
 
-    private long PatientID;
+    private long patientID;
     private Patient patient;
 
     private int numberOfCustodians;
@@ -84,19 +84,19 @@ public class Reservation {
     }
 
     public long getCustodianID() {
-        return CustodianID;
+        return custodianID;
     }
 
     public void setCustodianID(long custodianID) {
-        CustodianID = custodianID;
+        custodianID = custodianID;
     }
 
     public long getPatientID() {
-        return PatientID;
+        return patientID;
     }
 
     public void setPatientID(long patientID) {
-        PatientID = patientID;
+        patientID = patientID;
     }
 
     public long getDoctorID() {

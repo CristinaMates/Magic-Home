@@ -12,6 +12,7 @@ public class Patient {
     private int age;
     private Doctor doctor;
     private boolean disability;
+    private long doctorID;
 
     public Patient (){
 
@@ -75,6 +76,14 @@ public class Patient {
 
     }
 
+    public long getDoctorId() {
+        return doctorID;
+    }
+
+    public void setDoctorId(long doctorID) {
+        this.doctorID = doctorID;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -85,6 +94,7 @@ public class Patient {
                 ", age=" + age +
                 ", doctor=" + doctor +
                 ", disability=" + disability +
+                ", doctorID=" + doctorID +
                 '}';
     }
 
@@ -92,20 +102,30 @@ public class Patient {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Patient patient = (Patient) o;
-        return id == patient.id &&
-                age == patient.age &&
-                disability == patient.disability &&
-                Objects.equals(firstName, patient.firstName) &&
-                Objects.equals(lastName, patient.lastName) &&
-                Objects.equals(diagnosis, patient.diagnosis) &&
-                Objects.equals(doctor, patient.doctor);
+
+        if (id != patient.id) return false;
+        if (age != patient.age) return false;
+        if (disability != patient.disability) return false;
+        if (doctorID != patient.doctorID) return false;
+        if (firstName != null ? !firstName.equals(patient.firstName) : patient.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(patient.lastName) : patient.lastName != null) return false;
+        if (diagnosis != null ? !diagnosis.equals(patient.diagnosis) : patient.diagnosis != null) return false;
+        return doctor != null ? doctor.equals(patient.doctor) : patient.doctor == null;
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, firstName, lastName, diagnosis, age, doctor, disability);
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (diagnosis != null ? diagnosis.hashCode() : 0);
+        result = 31 * result + age;
+        result = 31 * result + (doctor != null ? doctor.hashCode() : 0);
+        result = 31 * result + (disability ? 1 : 0);
+        result = 31 * result + (int) (doctorID ^ (doctorID >>> 32));
+        return result;
     }
 }
 
