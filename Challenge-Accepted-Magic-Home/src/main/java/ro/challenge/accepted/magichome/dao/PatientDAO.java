@@ -2,8 +2,8 @@ package ro.challenge.accepted.magichome.dao;
 
 import ro.challenge.accepted.magichome.domain.Patient;
 
-public class PatientDAO implements AbstractDAO<Patient> {
+import java.util.List;
 
-
+public interface PatientDAO extends AbstractDAO<Patient> {
 
 }
