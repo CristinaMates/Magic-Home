@@ -7,8 +7,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
-import ro.challenge.accepted.magichome.dao.PatientDAO;
-import ro.challenge.accepted.magichome.dao.PatientDAOImpl;
+import ro.challenge.accepted.magichome.dao.*;
 
 import javax.sql.DataSource;
 
@@ -17,9 +16,28 @@ import javax.sql.DataSource;
 public class ApplicationConfiguration implements TransactionManagementConfigurer {
 
     @Bean
-    PatientDAO patientDAO(){
+    public PatientDAO patientDAO(){
         return new PatientDAOImpl(dataSource());
     }
+
+
+    @Bean
+    public DoctorDAO doctorDAO(){
+        return new DBDoctorDAO(dataSource());
+    }
+
+    @Bean
+    public CustodianDAO custodianDAO(){
+        return new CustodianDAOImpl(dataSource());
+    }
+
+
+    @Bean
+    public ReservationDAO reservationDAO(){
+        return new ReservationDAOImpl(dataSource()) {
+        };
+    }
+
 
     @Bean
     public DataSource dataSource() {

@@ -3,6 +3,7 @@ package ro.challenge.accepted.magichome.dao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ro.challenge.accepted.magichome.domain.Patient;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,6 +28,7 @@ public class PatientDAOImpl implements PatientDAO {
 
     public PatientDAOImpl(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+
     }
 
     @Override
@@ -53,5 +55,6 @@ public class PatientDAOImpl implements PatientDAO {
 //            throw new RuntimeException("Force rollback");
 //        }
         return p;
+
     }
 }

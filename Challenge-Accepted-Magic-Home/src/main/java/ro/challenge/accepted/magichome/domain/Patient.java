@@ -7,25 +7,16 @@ public class Patient {
 
     private long id;
     private String firstName;
-    private String patientLastName;
+    private String lastName;
     private String diagnosis;
     private int age;
     private Doctor doctor;
-    private long doctorId;
     private boolean disability;
 
     public Patient (){
 
     }
-    public Patient(long patientId, String firstName, String patientLastName, String diagnosis, int age, Doctor doctor, boolean disability) {
-        this.id = patientId;
-        this.firstName = firstName;
-        this.patientLastName = patientLastName;
-        this.diagnosis = diagnosis;
-        this.age = age;
-        this.doctor = doctor;
-        this.disability = disability;
-    }
+
 
     public long getId() {
         return id;
@@ -43,12 +34,12 @@ public class Patient {
         this.firstName = firstName;
     }
 
-    public String getPatientLastName() {
-        return patientLastName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPatientLastName(String patientLastName) {
-        this.patientLastName = patientLastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getDiagnosis() {
@@ -84,12 +75,17 @@ public class Patient {
 
     }
 
-    public long getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(long doctorId) {
-        this.doctorId = doctorId;
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", diagnosis='" + diagnosis + '\'' +
+                ", age=" + age +
+                ", doctor=" + doctor +
+                ", disability=" + disability +
+                '}';
     }
 
     @Override
@@ -101,7 +97,7 @@ public class Patient {
                 age == patient.age &&
                 disability == patient.disability &&
                 Objects.equals(firstName, patient.firstName) &&
-                Objects.equals(patientLastName, patient.patientLastName) &&
+                Objects.equals(lastName, patient.lastName) &&
                 Objects.equals(diagnosis, patient.diagnosis) &&
                 Objects.equals(doctor, patient.doctor);
     }
@@ -109,7 +105,7 @@ public class Patient {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, firstName, patientLastName, diagnosis, age, doctor, disability);
+        return Objects.hash(id, firstName, lastName, diagnosis, age, doctor, disability);
     }
 }
 
