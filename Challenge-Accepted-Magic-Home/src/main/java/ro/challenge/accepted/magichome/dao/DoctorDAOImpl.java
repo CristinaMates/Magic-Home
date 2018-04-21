@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DoctorDAOImpl implements DoctorDAO {
-    List<Doctor> doctors = new ArrayList<>();
+    private List<Doctor> doctors = new ArrayList<>();
 
     @Override
     public Doctor create(Doctor doctor) {
@@ -26,19 +26,11 @@ public class DoctorDAOImpl implements DoctorDAO {
 
     @Override
     public void delete(Doctor doctor) {
-        for (Doctor doctor1 : doctors) {
-            if (doctor1.equals(doctor)) {
-                doctors.remove(doctor1);
-            }
-        }
+        doctors.remove(doctor);
     }
 
     @Override
     public List<Doctor> getAll() {
         return new ArrayList<>(doctors);
-    }
-
-    public List<Doctor> getDoctors() {
-        return doctors;
     }
 }

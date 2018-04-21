@@ -28,7 +28,19 @@ public class DoctorDAOImplTest {
         doctorDAO.create(new Doctor("George", "Popescu", 32L));
         doctorDAO.update(new Doctor("George-Ioan", "Popescu", 32L));
 
-        Doctor updatedDoctor = doctorDAO.getDoctors().get(0);
+        Doctor updatedDoctor = doctorDAO.getAll().get(0);
         assertEquals(updatedDoctor.getFirstName(), "George-Ioan");
+    }
+
+    @Test
+    public void deleteDoctor() {
+        DoctorDAOImpl doctorDAO = new DoctorDAOImpl();
+
+        Doctor doctor = new Doctor("George", "Popescu", 32L);
+
+        doctorDAO.create(doctor);
+        doctorDAO.delete(doctor);
+
+        assertEquals(0, doctorDAO.getAll().size());
     }
 }
