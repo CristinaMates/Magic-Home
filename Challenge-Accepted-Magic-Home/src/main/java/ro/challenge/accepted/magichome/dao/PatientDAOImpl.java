@@ -25,7 +25,7 @@ public class PatientDAOImpl implements PatientDAO {
             public Patient mapRow(ResultSet resultSet, int i) throws SQLException {
                 Patient result = new Patient();
                 result.setFirstName(resultSet.getString(1));
-                result.setPatientLastName(resultSet.getString(2));
+                result.setLastName(resultSet.getString(2));
                 result.setDisability(resultSet.getBoolean(3));
                 result.setAge(resultSet.getInt(4));
                 result.setDiagnosis(resultSet.getString(5));
@@ -37,7 +37,7 @@ public class PatientDAOImpl implements PatientDAO {
     @Override
     public Patient create(Patient p) {
         jdbcTemplate.update("insert into patient(first_name, last_name, disability, age, diagnosis) values(?, ?, ?, ?, ?) returning id",
-                p.getFirstName(), p.getPatientLastName(), p.isDisability(), p.getAge(), p.getDiagnosis());
+                p.getFirstName(), p.getLastName(), p.isDisability(), p.getAge(), p.getDiagnosis());
         return p;
 
     }

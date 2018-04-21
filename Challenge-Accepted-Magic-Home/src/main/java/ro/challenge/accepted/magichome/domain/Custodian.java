@@ -3,7 +3,7 @@ package ro.challenge.accepted.magichome.domain;
 public class Custodian {
     private String firstName;
     private String lastName;
-    private long telephone;
+    private String telephone;
     private long id;
 
 
@@ -27,11 +27,11 @@ public class Custodian {
         this.lastName = lastName;
     }
 
-    public long getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(long telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
@@ -50,18 +50,17 @@ public class Custodian {
 
         Custodian custodian = (Custodian) o;
 
-        if (telephone != custodian.telephone) return false;
         if (id != custodian.id) return false;
-        if (firstName != null ? !firstName.equals(custodian.firstName) : custodian.firstName != null)
-            return false;
-        return lastName != null ? lastName.equals(custodian.lastName) : custodian.lastName == null;
+        if (firstName != null ? !firstName.equals(custodian.firstName) : custodian.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(custodian.lastName) : custodian.lastName != null) return false;
+        return telephone != null ? telephone.equals(custodian.telephone) : custodian.telephone == null;
     }
 
     @Override
     public int hashCode() {
         int result = firstName != null ? firstName.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (int) (telephone ^ (telephone >>> 32));
+        result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         result = 31 * result + (int) (id ^ (id >>> 32));
         return result;
     }
