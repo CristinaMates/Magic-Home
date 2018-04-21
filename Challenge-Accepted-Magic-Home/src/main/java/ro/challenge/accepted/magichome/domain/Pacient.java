@@ -1,4 +1,4 @@
 package ro.challenge.accepted.magichome.domain;
 
-public class Reservation {
+public class Pacient {
 }
