@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface ReservationService {
 
-    void createReservation(ReservationService reservationService);
+    void createReservation(Reservation reservation);
 
     List<Reservation> getAll();
+
 }

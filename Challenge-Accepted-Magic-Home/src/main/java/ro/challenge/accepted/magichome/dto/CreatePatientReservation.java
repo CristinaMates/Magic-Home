@@ -5,7 +5,7 @@ import ro.challenge.accepted.magichome.domain.Patient;
 
 import java.util.Date;
 
-public class CreatePacientReservation {
+public class CreatePatientReservation {
     private Patient pacient;
 
     private String diagnosis;
