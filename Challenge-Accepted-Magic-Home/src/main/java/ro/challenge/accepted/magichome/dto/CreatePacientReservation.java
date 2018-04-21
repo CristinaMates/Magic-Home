@@ -2,7 +2,6 @@ package ro.challenge.accepted.magichome.dto;
 
 import ro.challenge.accepted.magichome.domain.Custodian;
 import ro.challenge.accepted.magichome.domain.Doctor;
-import ro.challenge.accepted.magichome.domain.Pacient;
 
 public class CreatePacientReservation {
 private Pacient pacient;
