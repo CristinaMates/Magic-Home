@@ -39,13 +39,10 @@ public class ReservationController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String create(@RequestBody Reservation dto) {
         reservationService.createReservation(dto);
-        // /reservationService.createReservation(null);///new Reservation());
-
         return "OK";
 
 
     }
-
 
     @RequestMapping(value = "/accept", method = RequestMethod.POST)
     public String acceptReservation(@RequestBody AcceptRequest acceptRequest) {
@@ -65,7 +62,6 @@ public class ReservationController {
 
         return "OK";
     }
-
 
     @RequestMapping(value = "/mock", method = RequestMethod.GET)
     public Reservation mockReservation() {
@@ -93,12 +89,9 @@ public class ReservationController {
         doctor.setLastName("Costel");
         result.setDoctor(doctor);
 
-
         return result;
 
     }
-
-
 
     private Reservation getReservation (CreatePatientReservation dto){
         Reservation reservation = new Reservation();
@@ -125,6 +118,4 @@ public class ReservationController {
         return reservation;
 
     }
-
-
 }

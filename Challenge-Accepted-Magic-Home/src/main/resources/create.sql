@@ -15,7 +15,6 @@ WITH (
   OIDS=FALSE
 );
 
-/*
 
 create table doctor(
 	first_name varchar (50),
@@ -41,5 +40,5 @@ create table custodian (
 
 	);
 
-*/
-	--select * from custodian;
+
+	select * from custodian;

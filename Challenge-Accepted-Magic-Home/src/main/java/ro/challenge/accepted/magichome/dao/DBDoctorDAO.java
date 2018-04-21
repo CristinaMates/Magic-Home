@@ -47,9 +47,6 @@ public class DBDoctorDAO implements DoctorDAO{
 
         doctor.setId(newDoctorId);
 
-//        if (true) {
-//            throw new RuntimeException("Force rollback");
-//        }
         return doctor;
     }
 
