@@ -47,4 +47,4 @@ public class ReservationDAOImpl implements ReservationDAO {
                 }, reservation.getCustodianID(),
                 reservation.getPatientID(), reservation.getNumberOfCustodians(), reservation.getDoctorID(), reservation.getEntranceDate(), reservation.getDays(), reservation.isNeedsPsychologicalCounseling());
 
-        return reservation;
+        return reservation;}}

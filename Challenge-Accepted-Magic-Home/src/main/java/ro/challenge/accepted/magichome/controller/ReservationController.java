@@ -37,7 +37,7 @@ public class ReservationController {
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String create(@PathVariable Reservation dto) {
+    public String create(@RequestBody Reservation dto) {
         reservationService.createReservation(dto);
         // /reservationService.createReservation(null);///new Reservation());
 

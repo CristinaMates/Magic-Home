@@ -16,7 +16,7 @@ public class PatientDAOImpl implements PatientDAO {
         public Patient mapRow(ResultSet resultSet, int i) throws SQLException {
             Patient result = new Patient();
             result.setFirstName(resultSet.getString("first_name"));
-            result.setPatientLastName(resultSet.getString("last_name"));
+            result.setLastName(resultSet.getString("last_name"));
             result.setDisability(resultSet.getBoolean("disability"));
             result.setAge(resultSet.getInt("age"));
             result.setDiagnosis(resultSet.getString("diagnosis"));
@@ -46,8 +46,8 @@ public class PatientDAOImpl implements PatientDAO {
 
                         return resultSet.getLong(1);
                     }
-                }, p.getFirstName(), p.getPatientLastName(),
-                p.isDisability(), p.getAge(), p.getDiagnosis(), p.getDoctorId());
+                }, p.getFirstName(), p.getLastName(),
+                p.isDisability(), p.getAge(), p.getDiagnosis(), p.getDoctor().getId());
 
         p.setId(newPatientId);
 
