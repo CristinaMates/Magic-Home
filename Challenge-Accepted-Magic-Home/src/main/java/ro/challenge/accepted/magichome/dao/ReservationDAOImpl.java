@@ -23,19 +23,28 @@ public class ReservationDAOImpl implements ReservationDAO {
             @Override
             public Reservation mapRow(ResultSet resultSet, int i) throws SQLException {
                 Reservation result = new Reservation();
-                result.setId(resultSet.getInt(1));
-                result.setNumberOfCustodians(resultSet.getInt(2));
-                result.setEntranceDate(resultSet.getDate(3));
-                result.setDays(resultSet.getInt(4));
-                result.setNeedsPsychologicalCounseling(resultSet.getBoolean(5));
+                result.setCustodianID(resultSet.getLong(1));
+                result.setPatientID(resultSet.getLong(2));
+                result.setNumberOfCustodians(resultSet.getInt(3));
+                result.setDoctorID(resultSet.getLong(4));
+                result.setEntranceDate(resultSet.getDate(5));
+                result.setDays(resultSet.getInt(6));
+                result.setNeedsPsychologicalCounseling(resultSet.getBoolean(7));
                 return result;
             }
         });
     }
 
     @Override
-    public Reservation create(Reservation c) {
-        jdbcTemplate.update("insert into reservation ()");
-        return null;
-    }
-}
+    public Reservation create(Reservation reservation) {
+        long newClientId = jdbcTemplate.queryForObject("insert into reservation(custodianID, patientID, numberOfCustodians, doctorID, entranceDate, days, needsPsychologicalCounseling) values(?, ?, ?, ?, ?, ?, ?, ?) returning id",
+                new RowMapper<Long>() {
+                    @Override
+                    public Long mapRow(ResultSet resultSet, int i) throws SQLException {
+
+                        return resultSet.getLong(1);
+                    }
+                }, reservation.getCustodianID(),
+                reservation.getPatientID(), reservation.getNumberOfCustodians(), reservation.getDoctorID(), reservation.getEntranceDate(), reservation.getDays(), reservation.isNeedsPsychologicalCounseling());
+
+        return reservation;
