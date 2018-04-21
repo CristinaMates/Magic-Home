@@ -36,8 +36,18 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public Patient create(Patient p) {
-        jdbcTemplate.update("insert into patient(first_name, last_name, disability, age, diagnosis) values(?, ?, ?, ?, ?) returning id",
-                p.getFirstName(), p.getLastName(), p.isDisability(), p.getAge(), p.getDiagnosis());
+        long newDoctorId =  jdbcTemplate.queryForObject("insert into patient(first_name, last_name, disability, age, diagnosis) values(?, ?, ?, ?, ?) returning id",
+                new RowMapper<Long>() {
+                    @Override
+                    public Long mapRow(ResultSet resultSet, int i) throws SQLException {
+
+                        return resultSet.getLong(1);
+                    }
+                },  p.getFirstName(), p.getLastName(), p.isDisability(), p.getAge(), p.getDiagnosis());
+
+
+        p.setId(newDoctorId);
+
         return p;
 
     }

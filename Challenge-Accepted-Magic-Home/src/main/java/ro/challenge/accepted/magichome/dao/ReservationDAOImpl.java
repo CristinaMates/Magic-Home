@@ -23,13 +23,14 @@ public class ReservationDAOImpl implements ReservationDAO {
             @Override
             public Reservation mapRow(ResultSet resultSet, int i) throws SQLException {
                 Reservation result = new Reservation();
-                result.setCustodianID(resultSet.getLong(1));
-                result.setPatientID(resultSet.getLong(2));
-                result.setNumberOfCustodians(resultSet.getInt(3));
-                result.setDoctorID(resultSet.getLong(4));
-                result.setEntranceDate(resultSet.getDate(5));
-                result.setDays(resultSet.getInt(6));
-                result.setNeedsPsychologicalCounseling(resultSet.getBoolean(7));
+                result.setId(resultSet.getInt("id"));
+                result.setCustodianID(resultSet.getLong("custodianID"));
+                result.setPatientID(resultSet.getLong("patientID"));
+                result.setNumberOfCustodians(resultSet.getInt("numberOfCustodians"));
+                result.setDoctorID(resultSet.getLong("doctorID"));
+                result.setEntranceDate(resultSet.getDate("entranceDate"));
+                result.setDays(resultSet.getInt("days"));
+                result.setNeedsPsychologicalCounseling(resultSet.getBoolean("needsPsychologicalCounseling"));
                 return result;
             }
         });
@@ -37,14 +38,17 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public Reservation create(Reservation reservation) {
-        long newClientId = jdbcTemplate.queryForObject("insert into reservation(custodianID, patientID, numberOfCustodians, doctorID, entranceDate, days, needsPsychologicalCounseling) values(?, ?, ?, ?, ?, ?, ?, ?) returning id",
+        long newClientId = jdbcTemplate.queryForObject("insert into reservation(custodianID, patientID, numberOfCustodians, doctorID, entranceDate, days, needsPsychologicalCounseling) values(?, ?, ?, ?, ?, ?, ?) returning id",
                 new RowMapper<Long>() {
                     @Override
                     public Long mapRow(ResultSet resultSet, int i) throws SQLException {
 
                         return resultSet.getLong(1);
                     }
-                }, reservation.getCustodianID(),
-                reservation.getPatientID(), reservation.getNumberOfCustodians(), reservation.getDoctorID(), reservation.getEntranceDate(), reservation.getDays(), reservation.isNeedsPsychologicalCounseling());
+                }, reservation.getCustodian().getId(),
+                reservation.getPatient().getId(), reservation.getNumberOfCustodians(), reservation.getDoctor().getId(), reservation.getEntranceDate(), reservation.getDays(), reservation.isNeedsPsychologicalCounseling());
 
+        reservation.setId(newClientId);
         return reservation;
+    }
+}

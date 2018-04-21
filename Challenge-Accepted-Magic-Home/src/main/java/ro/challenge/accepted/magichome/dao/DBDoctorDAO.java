@@ -35,7 +35,7 @@ public class DBDoctorDAO implements DoctorDAO{
 
     @Override
     public Doctor create(Doctor doctor) {
-        long newDoctorId =  jdbcTemplate.queryForObject("insert into doctor(first_name, last_name) values(?, ?)",
+        long newDoctorId =  jdbcTemplate.queryForObject("insert into doctor(first_name, last_name) values(?, ?) returning id",
                 new RowMapper<Long>() {
                     @Override
                     public Long mapRow(ResultSet resultSet, int i) throws SQLException {

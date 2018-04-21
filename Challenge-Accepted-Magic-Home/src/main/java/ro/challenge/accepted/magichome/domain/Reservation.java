@@ -3,7 +3,7 @@ package ro.challenge.accepted.magichome.domain;
 import java.util.Date;
 
 public class Reservation {
-    private int id;
+    private long id;
 
     private long CustodianID;
     private Custodian custodian;
@@ -19,11 +19,11 @@ public class Reservation {
     private int days;
     private boolean needsPsychologicalCounseling;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,6 +1,7 @@
 package ro.challenge.accepted.magichome.service;
 
 import groovy.transform.Trait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.challenge.accepted.magichome.dao.CustodianDAO;
@@ -23,12 +24,16 @@ import java.util.List;
 @Transactional
 public class DefaultReservationService implements ReservationService {
 
+    @Autowired
     private ReservationDAO reservationDAO;
 
+    @Autowired
     private DoctorDAO doctorDAO;
 
+    @Autowired
     private CustodianDAO custodianDAO;
 
+    @Autowired
     private PatientDAO patientDAO;
 
 
@@ -50,20 +55,16 @@ public class DefaultReservationService implements ReservationService {
 
     @Override
     public List<Reservation> getAll() {
-        Reservation r1 = new Reservation();
-        r1.setDays(12);
-        r1.setCustodian(new Custodian());
-        r1.setDoctor(new Doctor());
-        r1.setId(1);
 
+        List<Reservation> result = reservationDAO.getAll();
+        for (Reservation re:
+             result) {
+            solve(re);
+        }
+       return result;
+    }
 
-        Reservation r2 = new Reservation();
-        r2.setDays(13);
-        r2.setCustodian(new Custodian());
-        r2.setDoctor(new Doctor());
-        r2.setId(3);
-
-
-        return Arrays.asList(new Reservation[]{r1, r2});
+    private void solve(Reservation reservation) {
+        //reservation.setDoctor()....
     }
 }

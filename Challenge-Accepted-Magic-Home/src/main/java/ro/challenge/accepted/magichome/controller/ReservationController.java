@@ -37,7 +37,7 @@ public class ReservationController {
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String create(@PathVariable Reservation dto) {
+    public String create(@RequestBody Reservation dto) {
         reservationService.createReservation(dto);
         // /reservationService.createReservation(null);///new Reservation());
 
@@ -48,10 +48,13 @@ public class ReservationController {
 
     @RequestMapping(value = "/accept", method = RequestMethod.POST)
     public String acceptReservation(@RequestBody AcceptRequest acceptRequest) {
-
+//find reservation by id
+        //update status
         LOGGER.info("Reservation Accept {}", acceptRequest);
         try {
             if (false) {
+
+                //telefon trebuie sa fie din custode ... si sa inceapa cu 4
                 smsService.sendSms("40724251112", acceptRequest.getText() + acceptRequest.isAccept());
             }
         }catch (Exception ex ){
