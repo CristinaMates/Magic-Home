@@ -1,36 +1,56 @@
  window.addEventListener("load",function(){
-
+    var logForm=document.getElementsByClassName("logForm")[0];
+    var loginButton=document.getElementById("loginButton");
+    var submitButton=document.getElementById("logSubmit");
+    var errorMessageLog=document.getElementById("errorMessageLog");
+    loginButton.addEventListener("click",function(){
+        if (logForm.style.display=="none"){
+            logForm.style.display="block";}
+        else{
+            logForm.style.display="none";
+        }
+    })
+    submitButton.addEventListener("click",function(){
+        var userName=document.getElementById("userName");
+        var password=document.getElementById("paswd");
+        if(userName.value=="test" && password.value=="test"){
+            window.location.href = "admin.html";
+        }else if(userName.value!="test"){
+            errorMessageLog.innerHTML="The User Name is not correct";
+        }else{
+            errorMessageLog.innerHTML="The Password is not correct";
+        }
+    })
     var registerBtn = $("#register-btn");
     registerBtn.click(onRegisterBtn);
+    
     var previousBtn = $("#previous-btn");
     previousBtn.click(onPreviousBtn);
-$( function() {
-    $( "#datepicker" ).datepicker();
-  } );
+    $( function() {
+        $( "#datepicker" ).datepicker();
+      } );
  
-var errorParent=$("#errorParent");
-var nextButton=document.getElementsByClassName("btnNext")[0];
-var submitButton=document.getElementsByClassName("submitButton")[0];
-console.log(nextButton);
-   nextButton.addEventListener("click",function(){
-       if (validFormParent()){
-           errorParent.html("OK");
-           onNextBtn();
-       }
-       else{
-           errorParent.html("Campuri goale");
-        }
-        })
-    submitButton.addEventListener("click",function(){
-        var x=validFormChild();
-        if (x===true){
-            console.log(validFormChild());
-            onSubmitBtn();
-        }
-        //      else {
-        //     console.log("blah");
-        // } 
-        });
+    var errorParent=$("#errorParent");
+    var nextButton=document.getElementsByClassName("btnNext")[0];
+    var submitButton=document.getElementsByClassName("submitButton")[0];
+    console.log(nextButton);
+       nextButton.addEventListener("click",function(){
+           if (validFormParent()){
+            //   errorParent.html("Ok");
+               onNextBtn();
+           }
+           else{
+               errorParent.html("Formularul trebuie completat &#238n &#238ntregime! Verifica&#539i corectitudinea datelor.");
+            }
+            })
+        submitButton.addEventListener("click",function(){
+            var x=validFormChild();
+            if (x===true){
+                console.log(validFormChild());
+                onSubmitBtn();
+            }
+            
+            });
 });
 
 function validFormParent() {
@@ -130,12 +150,12 @@ function onSubmitBtn(){
     homePage.removeClass("hide").addClass("show");
     var alertId = $("#alert-id");
     alertId.removeClass("hide").addClass("show");
-    setTimeout(deletePopUp, 3000);
+    setTimeout(function(){
+       alertId.removeClass("show").addClass("hide");
+       window.location.href="index.html";
+    },5000);
 }
-function deletePopUp(){
-    var alertId = $("#alert-id");
-    alertId.removeClass("show").addClass("hide");
-}
+
 function onNextBtn(){
     var formChild = $("#child-form");
     var formParent = $("#form-parent");

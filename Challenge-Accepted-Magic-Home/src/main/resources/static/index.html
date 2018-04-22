@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Magic Home</title>
+    <link rel="icon" href="https://pentrumagichome.ro/wp-content/themes/magichome/images/logo.png">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href=css/magic-home.css>
+    
+    <script type="text/javascript" src="js/script.js"></script>
+<!--    <script type="text/javascript" src="js/scroll.js"></script>
+-->    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+    <!--<link rel="stylesheet" type="text/css" media="screen">-->
+    
+</head>
+<body>
+    <div id="home-page">
+        <div id="cover">
+            <a href="#" data-toggle="modal" data-target="#login" id="loginButton"><span class="glyphicon glyphicon-log-in" ></span> Login</a> 
+            <img class="pull-right" src="https://pentrumagichome.ro/wp-content/themes/magichome/images/logo.png">
+      		<div class="innerContent">
+      			<div class="slogan">
+      			    <p>
+          				COPIII <span>PUTERNICI</span>  <br>
+                        AU PARINTI <span>PUTERNICI</span>. 
+                    </p>
+                </div>	
+            </div>
+      	</div>	
+      	<div id="register-info">
+            <p> <span>Magic Home</span> ofer&#259 g&#259zduire gratuit&#259, suport &#537i alte facilit&#259&#539i</p>
+            <p id="help">Pentru: Familiile copiilor diagnostica&#539i cu cancer sau alte afec&#539iuni grave.</p>
+            <p id="help1"> Te putem ajuta?!</p>
+            <button type="button" id="register-btn" class="btn btn-primary btn-lg" href="#form-parent">&#206NREGISTREAZA-TE</button>
+            
+        </div>
+    </div>
+
+
+<div class="logForm " style="display:none">
+    <div id="logContent">
+        <label class="labelLog">User</label>
+        <input type="text" class="inputLog" id="userName" placeholder="User" name="name">
+        <label class="labelLog" >Password:</label>
+        <input type="password" class="inputLog" id="paswd" placeholder="Enter your password" name="newpwd">
+        <button type="button" class="btn btn-success" id ="logSubmit">Login</button>
+        <p id="errorMessageLog"></p>
+   </div>
+   
+  </div>
+ 
+
+
+    <form id="form-parent" class="hide">
+        
+        <label for="inputState" class="title">Detalii: P&#259rinte/Tutore</label>
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" id="fNameParent" placeholder="Prenume">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" id="lNameParent" placeholder="Nume">
+            </div>
+        </div>
+    
+        <div class="form-row ">
+            <div class="col">
+                <input type="text" class="form-control" id="telefon"placeholder="Telefon">
+            </div>
+        </div>
+        
+        <div class="form-group col-md-5">
+            <label for="inputState">Nr. de persoane care necesit&#259 cazare:</label>
+            <select id="inputNumber" class="form-control">
+                <option>1</option>
+                <option>2</option>
+            </select>
+        </div>
+        
+        <div class="form-row col">
+           <p>Data caz&#259rii: <input type="text" id="datepicker"></p>
+            <input type="text" class="form-control col-md-3" id="inputDays" placeholder="Nr. de zile">
+        </div>
+        <p>Am nevoie de consiliere:</p>
+        
+        <div class="container">
+          
+            <label class="radio-inline">
+                <input type="radio" name="optradio" checked="checked">Nu
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="optradio">Da
+            </label>
+          
+        </div>
+        <p id="errorParent"></p>
+        <div class="buttonClass">
+            <input class="btnNext pull-right" id="next-btn" type="button" value="Next &raquo;">
+        </div>
+        
+    </form>
+    
+    
+    <form id="child-form" class="hide ">
+        <label for="inputState" class="title child">Detalii: Copil/Pacient</label>
+        <div class="form-row">
+            <div class="col">
+              <input type="text" class="form-control" id= "lNameChild" placeholder="Nume pacient">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" id="fNameChild" placeholder="Prenume pacient">
+            </div>
+       </div> 
+       
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" id="diagnoza" placeholder="Diagnostic">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" id="varsta" placeholder="V&#226rsta">
+            </div>
+       </div> 
+    <div class="form-group col-md-4">
+        <label for="inputState">Dizabilit&#259&#539i</label> 
+        <select id="dropInputDisab" class="form-control">
+            <option>Da</option>
+            <option>Nu</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="inputState">Nume Medic:</label>
+        <select id="dropInputDoctor" class="form-control">
+            <option>Doctor1</option>
+            <option>Doctor2</option>
+            <option>Doctor3</option>
+            <option>Doctor4</option>
+            <option>Doctor5</option>
+        </select>
+    </div>
+    <div class="buttonClass">
+        <input class="btnPrev " id="previous-btn" type="button" value="&laquo; Previous">
+    </div>
+    <input id="send-btn" class="btn submitButton" type="button" value="Trimite">
+</form> 
+    <div id="alert-id" class="hide">
+        
+            <p>&#206nregistrarea dumneavoastr&#259 a fost trimis&#259! &#206n urma valid&#259rii acesteia, ve&#539i primi un mesaj la num&#259rul de telefon ad&#259ugat</p>
+        
+    </div>
+
+</body>
+</html>

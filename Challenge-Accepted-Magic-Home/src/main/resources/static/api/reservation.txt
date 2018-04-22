@@ -1,0 +1,93 @@
+[
+    {
+        "id": 4,
+        "custodianID": 0,
+        "custodian": "Ana",
+        "patientID": 0,
+        "patient":"Ion",
+        "numberOfCustodians": 1,
+        "doctorID": 1,
+        "doctor": "Doctor1",
+        "entranceDate": "2018-04-21",
+        "days": 5,
+        "needsPsychologicalCounseling": false
+    },
+    {
+        "id": 16,
+        "custodianID": 0,
+        "custodian": "Amalia",
+        "patientID": 0,
+        "patient": "George",
+        "numberOfCustodians": 2,
+        "doctorID": 13,
+        "doctor": "Doctor2",
+        "entranceDate": "2018-04-21",
+        "days": 5,
+        "needsPsychologicalCounseling": false
+    },
+    {
+        "id": 21,
+        "custodianID": 0,
+        "custodian": "Cristina",
+        "patientID": 0,
+        "patient": "Anca",
+        "numberOfCustodians": 2,
+        "doctorID": 18,
+        "doctor": "Doctor4",
+        "entranceDate": "2018-04-21",
+        "days": 5,
+        "needsPsychologicalCounseling": true
+    },
+    {
+        "id": 26,
+        "custodianID": 0,
+        "custodian": "Geo",
+        "patientID": 0,
+        "patient": "Geani",
+        "numberOfCustodians": 0,
+        "doctorID": 23,
+        "doctor": "Doctor3",
+        "entranceDate": "2018-04-21",
+        "days": 5,
+        "needsPsychologicalCounseling": false
+    },
+    {
+        "id": 30,
+        "custodianID": 0,
+        "custodian": "Alex",
+        "patientID": 0,
+        "patient": "Maria",
+        "numberOfCustodians": 7,
+        "doctorID": 27,
+        "doctor": "Doctor2",
+        "entranceDate": "2018-04-21",
+        "days": 5,
+        "needsPsychologicalCounseling": false
+    },
+       {
+        "id": 8,
+        "custodianID": 0,
+        "custodian": "Dani",
+        "patientID": 0,
+        "patient": "Henry",
+        "numberOfCustodians": 0,
+        "doctorID": 27,
+        "doctor": Doctor5,
+        "entranceDate": "2018-04-21",
+        "days": 5,
+        "needsPsychologicalCounseling": false
+    },
+       {
+        "id": 14,
+        "custodianID": 0,
+        "custodian": "Mihai",
+        "patientID": 0,
+        "patient": "Nani",
+        "numberOfCustodians": 0,
+        "doctorID": 27,
+        "doctor": "Doctor7",
+        "entranceDate": "2018-04-21",
+        "days": 5,
+        "needsPsychologicalCounseling": false
+    }
+]

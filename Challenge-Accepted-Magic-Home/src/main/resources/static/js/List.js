@@ -13,7 +13,7 @@ function List(){
 }
 List.prototype.sendData=function(newElement){
     return $.ajax({
-        url:"https://192.168.1.228:8080/api/reservation",
+        url:"http://localhost:8080/api/reservation",
         method:'POST',
         data:{
             "costudian.firstName":"ana",
@@ -33,7 +33,7 @@ List.prototype.sendData=function(newElement){
 
 List.prototype.getList=function(){
 return $.ajax({
-    url:"/api/reservation",
+    url:"http://localhost:8080/api/reservation",
     method:"GET",
     
     
