@@ -1,4 +1,6 @@
  window.addEventListener("load",function(){
+    var list=new List();
+
     var logForm=document.getElementsByClassName("logForm")[0];
     var loginButton=document.getElementById("loginButton");
     var submitButton=document.getElementById("logSubmit");
@@ -17,9 +19,11 @@
             window.location.href = "admin.html";
         }else if(userName.value!="test"){
             errorMessageLog.innerHTML="The User Name is not correct";
+
         }else{
             errorMessageLog.innerHTML="The Password is not correct";
         }
+
     })
     var registerBtn = $("#register-btn");
     registerBtn.click(onRegisterBtn);
@@ -47,7 +51,11 @@
             var x=validFormChild();
             if (x===true){
                 console.log(validFormChild());
-                onSubmitBtn();
+
+                list.sendData().then(function(response){
+
+                            onSubmitBtn();
+                });
             }
             
             });

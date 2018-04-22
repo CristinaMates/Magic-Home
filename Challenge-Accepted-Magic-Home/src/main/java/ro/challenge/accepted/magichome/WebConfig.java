@@ -3,22 +3,25 @@ package ro.challenge.accepted.magichome;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
 @EnableWebMvc
-public class WebConfig {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(
                 "/webjars/**", "/resources/**",
-                "/img/**",
+                "/image/**",
                 "/css/**",
-                "/js/**")
+                "/js/**"
+                ,"/html/**")
                 .addResourceLocations(
                         "classpath:/META-INF/resources/webjars/",
                         "classpath:/java/resources/",
-                        "classpath:/static/img/",
+                        "classpath:/static/image/",
                         "classpath:/static/css/",
+                        "classpath:/static/html/",
                         "classpath:/static/js/");
 
     }

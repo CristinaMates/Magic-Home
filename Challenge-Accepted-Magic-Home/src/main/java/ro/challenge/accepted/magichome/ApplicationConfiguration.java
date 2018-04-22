@@ -49,9 +49,9 @@ public class ApplicationConfiguration implements TransactionManagementConfigurer
                 .append(":")
                 .append("5432")
                 .append("/")
-                .append("postgres")
+                .append("magic-home")
                 .append("?user=")
-                .append("postgres")
+                .append("test")
                 .append("&password=")
                 .append("test").toString();
 
