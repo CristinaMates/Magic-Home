@@ -1,6 +1,7 @@
 package ro.challenge.accepted.magichome.service;
 
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,10 +9,8 @@ import ro.challenge.accepted.magichome.dao.CustodianDAO;
 import ro.challenge.accepted.magichome.dao.DoctorDAO;
 import ro.challenge.accepted.magichome.dao.PatientDAO;
 import ro.challenge.accepted.magichome.dao.ReservationDAO;
-import ro.challenge.accepted.magichome.domain.Custodian;
-import ro.challenge.accepted.magichome.domain.Doctor;
-import ro.challenge.accepted.magichome.domain.Patient;
-import ro.challenge.accepted.magichome.domain.Reservation;
+import ro.challenge.accepted.magichome.domain.*;
+
 import java.util.List;
 
 /**
@@ -62,11 +61,22 @@ public class DefaultReservationService implements ReservationService {
         return result;
     }
     private void solve(Reservation reservation) {
-        Doctor doctor = new Doctor();
-        reservation.setDoctor(doctorDAO.findById(doctor.getId()));
-        Patient patient = new Patient();
-        reservation.setPatient(patientDAO.findById(patient.getId()));
-        Custodian custodian = new Custodian();
-        reservation.setCustodian(custodianDAO.findById(custodian.getId()));
+        reservation.setDoctor(doctorDAO.findById(reservation.getDoctorID()));
+        reservation.setPatient(patientDAO.findById(reservation.getPatientID()));
+        reservation.setCustodian(custodianDAO.findById(reservation.getCustodianID()));
+    }
+
+    @Override
+    public void updateStatusReservation(long id, boolean accepted) {
+        Reservation reservation = reservationDAO.findById(id);
+        reservation.setStatus(accepted ? Status.ACCEPTED : Status.REJECTED);
+
+    }
+
+    @Override
+    public Reservation findById(long id) {
+        Reservation r =  reservationDAO.findById(id);
+        solve(r);
+        return r;
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ro.challenge.accepted.magichome.domain.Patient;
 import ro.challenge.accepted.magichome.domain.Reservation;
+import ro.challenge.accepted.magichome.domain.Status;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -24,6 +25,7 @@ public class ReservationDAOImpl implements ReservationDAO {
                 result.setEntranceDate(resultSet.getDate("entranceDate"));
                 result.setDays(resultSet.getInt("days"));
                 result.setNeedsPsychologicalCounseling(resultSet.getBoolean("needsPsychologicalCounseling"));
+                result.setStatus(resultSet.getString("status") != null? Status.valueOf(resultSet.getString("status")) : Status.NEW);
                 return result;
             }
         };
@@ -45,7 +47,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public Reservation create(Reservation reservation) {
-        long newReservationId =  jdbcTemplate.queryForObject("insert into reservation(custodianID, patientID, numberOfCustodians, doctorID, entranceDate, days, needsPsychologicalCounseling) values(?, ?, ?, ?, ?, ?, ?) returning id",
+        long newReservationId =  jdbcTemplate.queryForObject("insert into reservation(custodianID, patientID, numberOfCustodians, doctorID, entranceDate, days, needsPsychologicalCounseling, status) values(?, ?, ?, ?, ?, ?, ?, ?) returning id",
 
                 new RowMapper<Long>() {
                     @Override
@@ -53,7 +55,7 @@ public class ReservationDAOImpl implements ReservationDAO {
                         return resultSet.getLong(1);
                     }
                 }, reservation.getCustodian().getId(),
-                reservation.getPatient().getId(), reservation.getNumberOfCustodians(), reservation.getDoctor().getId(), reservation.getEntranceDate(), reservation.getDays(), reservation.isNeedsPsychologicalCounseling());
+                reservation.getPatient().getId(), reservation.getNumberOfCustodians(), reservation.getDoctor().getId(), reservation.getEntranceDate(), reservation.getDays(), reservation.isNeedsPsychologicalCounseling(), reservation.getStatus().name());
 
         reservation.setId(newReservationId);
         return reservation;
@@ -65,5 +67,12 @@ public class ReservationDAOImpl implements ReservationDAO {
         return jdbcTemplate.queryForObject("select * from reservation where id = ?",
 
                 RESERVATION_ROW_MAPPER, id);
+    }
+
+    @Override
+    public void update(Reservation reservation) {
+        //TODO: set all the fields here not only statuas
+        jdbcTemplate.update("update reservation set status =? where id = ?", reservation.getStatus().name(), reservation.getId());
+
     }
 }

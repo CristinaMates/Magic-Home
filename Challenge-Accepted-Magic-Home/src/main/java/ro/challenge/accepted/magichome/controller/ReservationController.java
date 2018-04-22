@@ -48,17 +48,29 @@ public class ReservationController {
     public String acceptReservation(@RequestBody AcceptRequest acceptRequest) {
 //find reservation by id
         //update status
-        LOGGER.info("Reservation Accept {}", acceptRequest);
-        try {
-            if (false) {
 
-                //telefon trebuie sa fie din custode ... si sa inceapa cu 4
-                smsService.sendSms("40724251112", acceptRequest.getText() + acceptRequest.isAccept());
+        Reservation reservation = reservationService.findById(acceptRequest.getReservationId());
+        if (reservation != null){
+            LOGGER.info("Reservation Accept {}", acceptRequest);
+            try {
+                reservationService.updateStatusReservation(reservation.getId(), acceptRequest.isAccept());
+                if (true) {
+
+                    //telefon trebuie sa fie din custode ... si sa inceapa cu 4
+                    String phone = reservation.getCustodian().getTelephone();
+                    if (!phone.startsWith("4")) {
+                        phone = "4" + phone;
+                    }
+
+                    smsService.sendSms(phone, acceptRequest.getText() + acceptRequest.isAccept());
+                }
+            }catch (Exception ex ){
+                LOGGER.error("Error sending SMS", ex);
+                return "ERROR";
             }
-        }catch (Exception ex ){
-            LOGGER.error("Error sending SMS", ex);
-            return "ERROR";
         }
+
+
 
         return "OK";
     }

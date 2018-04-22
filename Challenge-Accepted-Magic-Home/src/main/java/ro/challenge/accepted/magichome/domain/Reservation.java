@@ -19,6 +19,16 @@ public class Reservation {
     private int days;
     private boolean needsPsychologicalCounseling;
 
+    private Status status = Status.NEW;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public long getId() {
         return id;
     }
@@ -88,7 +98,7 @@ public class Reservation {
     }
 
     public void setCustodianID(long custodianID) {
-        custodianID = custodianID;
+        this.custodianID = custodianID;
     }
 
     public long getPatientID() {
@@ -96,7 +106,7 @@ public class Reservation {
     }
 
     public void setPatientID(long patientID) {
-        patientID = patientID;
+        this.patientID = patientID;
     }
 
     public long getDoctorID() {

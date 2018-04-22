@@ -1,5 +1,5 @@
-﻿--create sequence seq_number;
-drop table patient;
+﻿create sequence seq_number;
+--drop table patient;
 CREATE TABLE public.patient
 (
   first_name character varying(50),
@@ -32,6 +32,8 @@ create table reservation (
 	needsPsychologicalCounseling boolean
 	);
 
+
+
 create table custodian (
 	first_name varchar (50),
 	last_name varchar (50),
@@ -40,5 +42,7 @@ create table custodian (
 
 	);
 
+alter table reservation add status varchar(10);
 
-	select * from custodian;
+
+--	select * from custodian;

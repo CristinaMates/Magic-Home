@@ -10,4 +10,9 @@ public interface ReservationService {
 
     List<Reservation> getAll();
 
+
+    void updateStatusReservation(long id, boolean accepted);
+
+    Reservation findById(long id);
+
 }
